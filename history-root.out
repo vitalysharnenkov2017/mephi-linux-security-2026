@@ -1,0 +1,9 @@
+groupadd students
+useradd -u 1234 -g students -m -s /bin/bash user1
+passwd user1
+chage -M 90 user1
+id user1
+grep '^user1:' /etc/passwd
+grep '^students:' /etc/group
+chage -l user1
+exit

@@ -1,0 +1,119 @@
+    1  sudo dnf update -y
+    2  sudo dnf install -y git curl wget nano vim
+    3  sudo -v
+    4  id
+    5  mkdir -p ~/mephi-homework
+    6  cd ~/mephi-homework
+    7  ls
+    8  sudo -i
+    9  sudo find / -xdev -type f -perm -4000 -print > ~/mephi-homework/find-suid.out 2>/dev/null
+   10  cat ~/mephi-homework/find-suid.out
+   11  wc -l ~/mephi-homework/find-suid.out 
+   12  ps -eo user,uid,euid,ruid,comm --sort=uid | awk '$3 == 0 && $2 != 0 {print}' > ~/mephi-homework/ps-euid.out
+   13  cat ~/mephi-homework/ps-euid.out 
+   14  mkdir -p ~/mephi-homework
+   15  ps -eo pid,ruid,euid,comm | awk 'NR == 1 || ($2 == 1234 && $3 == 0)' > ~/mephi-homework/ps-euid.out
+   16  cat ~/mephi-homework/ps-euid.out 
+   17  ps -eo pid,ruid,euid,comm | awk 'NR == 1 || ($2 != 0 && $3 == 0)' > ~/mephi-homework/ps-euid.out
+   18  cat ~/mephi-homework/ps-euid.out 
+   19  sudo cp /usr/bin/cat /home/user1/cat-suid
+   20  sudo chown root:root /home/user1/cat-suid
+   21  sudo chmod 4755 /home/user1/cat-suid
+   22  ls -l /home/user1/cat-suid
+   23  stat /home/user1/cat-suid
+   24  sudo ls -ld /home/user1
+   25  sudo ls -l /home/user1/cat-suid
+   26  sudo stat /home/user1/cat-suid
+   27  mkdir -p ~/mephi-homework
+   28  sudo stat /home/user1 > ~/mephi-homework/stat.out
+   29  sudo stat /home/user1/cat-suid >> ~/mephi-homework/stat.out
+   30  sudo stat /home/user1/chown-cap >> ~/mephi-homework/stat.out
+   31  sudo cp /usr/bin/chown /home/user1/chown-cap
+   32  sudo chown root:root /home/user1/chown-cap
+   33  sudo chmod 755 /home/user1/chown-cap
+   34  sudo setcap cap_chown=ep /hom/user1/chown-cap
+   35  sudo ls -l /home/user1/chown-cap
+   36  sudo getcap /home/user1/chown-cap
+   37  sudo setcap cap_chown=ep /home/user1/chown-cap
+   38  sudo getcap /home/user1/chown-cap
+   39  sudo stat /home/user1/chown-cap >> ~/mephi-homework/stat.out
+   40  sudo getcap /home/user1/chown-cap > ~/mephi-homework/getcap.out
+   41  cat ~/mephi-homework/getcap.out
+   42  cat ~/mephi-homework/stat.out
+   43  su - user1
+   44  sudo chown user1:students /home/user1/cap-test
+   45  su - user1
+   46  sudo ls -ln /home/user1/cap-test > ~/mephi-homework/cap-test.out
+   47  sudo getcap /home/user1/chown-cap > ~/mephi-homework/getcap.out
+   48  sudo find / -type f -perm -4000 -print   > ~/mephi-homework/find-suid.out   2> ~/mephi-homework/find-suid-errors.out
+   49  cat ~/mephi-homework/find-suid.out
+   50  cat ~/mephi-homework/find-suid-errors.out
+   51  sudo EDITOR=nano visudo -f /etc/sudoers.d/time-setting
+   52  sudo chmod 440 /etc/sudoers.d/time-setting
+   53  sudo visudo -c
+   54  sudo -l -U user1
+   55  su - user1
+   56  sudo cat /etc/sudoers.d/time-setting > ~/mephi-homework/sudoers-time-setting.out
+   57  sudo -l -U user1 > ~/mephi-homework/sudo-check.out
+   58  history -a
+   59  su - user1
+   60  history > ~/mephi-homework/history.out
+   61  sudo reboot
+   62  cd ~/mephi-homework
+   63  id user1
+   64  sudo chage -l user1
+   65  sudo stat /home/user1/cat-suid
+   66  sudo getcap /home/user1/chown-cap
+   67  sudo -l -U user1
+   68  cd ~/mephi-homework
+   69  sudo stat /home/user1 > stat.out
+   70  sudo stat /home/user1/cat-suid >> stat.out
+   71  sudo stat /home/user1/chown-cap >> stat.out
+   72  sudo getcap /home/user1/chown-cap > getcap.out
+   73  id user1 > user-check.out
+   74  sudo chage -l user1 >> user-check.out
+   75  sudo -l -U user1 > sudo-check.out
+   76  mkdir -p etc/sudoers.d
+   77  cp /etc/passwd etc/passwd
+   78  cp /etc/group etc/group
+   79  sudo cat /etc/sudoers > etc/sudoers
+   80  sudo cat /etc/sudoers.d/time-setting > etc/sudoers.d/time-setting
+   81  sudo awk 'BEGIN {FS=OFS=":"} {$2="REDACTED"; print}' /etc/shadow > etc/shadow
+   82  grep '^user1:' etc/shadow
+   83  printf 'Бухгалтерский шифр: 372228\n'
+   84  whoami
+   85  id user1
+   86  sudo getcap /home/user1/chown-cap
+   87  echo "$XDG_SESSION_TYPE"
+   88  command -v mate-screenshot
+   89  command -v gnome-screenshot
+   90  mate-screenshot --delay=5 --file="$HOME/mephi-homework/mephi-screenshot.png"
+   91  printf 'Бухгалтерский шифр: 372228\n'
+   92  whoami
+   93  id user1
+   94  sudo getcap /home/user1/chown-cap
+   95  history -a
+   96  history > ~/mephi-homework/history.out
+   97  sudo cat /root/.bash_history > ~/mephi-homework/history-root.out
+   98  sudo cat /home/user1/.bash_history > ~/mephi-homework/history-user1.out
+   99  nano ~/mephi-homework/README.md
+  100  cd ~/mephi-homework
+  101  git init
+  102  sudo dnf install -y scrot
+  103  cd ~/mephi-homework
+  104  clear
+  105  printf 'Бухгалтерский шифр: 372228\n'
+  106  whoami
+  107  id user1
+  108  sudo getcap /home/user1/chown-cap
+  109  scrot -d 5 "$HOME/mephi-homework/mephi-screenshot.png"
+  110  file ~/mephi-homework/mephi-screenshot.png
+  111  ls -lh ~/mephi-homework/mephi-screenshot.png
+  112  cd ~/mephi-homework
+  113  for f in   mephi-screenshot.png   history.out   stat.out   getcap.out   find-suid.out   ps-euid.out   etc/passwd   etc/shadow   etc/group   etc/sudoers   etc/sudoers.d/time-setting   README.md; do   if test -s "$f"; then     printf 'ЕСТЬ: %s\n' "$f";   else     printf 'НЕТ ИЛИ ПУСТОЙ: %s\n' "$f";   fi; done
+  114  cat getcap.out
+  115  cat ps-euid.out
+  116  cat etc/sudoers.d/time-setting
+  117  grep '^user1:' etc/passwd etc/shadow
+  118  history -a
+  119  history > ~/mephi-homework/history.out
